@@ -7,12 +7,20 @@
 
 <h2>Kitap Sayfası</h2>
 
-<div style="margin-bottom:15px; margin-top:15px;">
+@using (Html.BeginForm("Index", "Kitap", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px;">
+        <b>Aranacak Kitap Adını Girin:&nbsp; </b> @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </div>
+}
+
+@*<div style="margin-bottom:15px; margin-top:15px;">
     <input type="text" class="form-control" placeholder="aranacak kitabı giriniz.." />
-</div>
+</div>*@
 
 <table class="table table-bordered">
-    
+
     <tr>
         <th>ID</th>
         <th>Kitap Adı</th>
@@ -36,8 +44,8 @@
             <td>@k.YAYINEVİ</td>
             <td>@k.SAYFA</td>
             <td>@k.DURUM</td>
-            <td><a href="/Kitap/KitapSil/@k.ID" class="btn btn-danger">Sil</a></td> 
-            <td><a href="/Kitap/KitapGetir/@k.ID" class="btn btn-success">Güncelle</a></td> 
+            <td><a href="/Kitap/KitapSil/@k.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Kitap/KitapGetir/@k.ID" class="btn btn-success">Güncelle</a></td>
         </tr>
     }
 </table>

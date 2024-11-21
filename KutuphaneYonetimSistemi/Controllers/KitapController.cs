@@ -77,6 +77,21 @@ namespace KutuphaneYonetimSistemi.Controllers
 
             return View("KitapGetir", ktb);
         }
-        
+        public ActionResult KitapGuncelle(TblKitap p)
+        {
+            var ktb = db.TblKitap.Find(p.ID);
+            ktb.AD = p.AD;
+            ktb.YAZAR = p.YAZAR;
+            ktb.SAYFA = p.SAYFA;
+            ktb.BASIMYIL = p.BASIMYIL;
+            ktb.YAYINEVİ = p.YAYINEVİ;
+
+            var ktg = db.TblKategori.Where(k => k.ID == p.TblKategori.ID).FirstOrDefault();
+            var yzr = db.TblYazar.Where(y => y.ID == p.TblYazar.ID).FirstOrDefault();
+            ktb.KATEGORİ = ktg.ID;
+            ktb.YAZAR = yzr.ID;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }        
     }
 }
